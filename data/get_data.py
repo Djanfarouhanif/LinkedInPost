@@ -14,6 +14,13 @@ stream = client.chat.completions.create(
 	top_p=0.7,
 	stream=True
 )
-
+theme = ''
 for chunk in stream:
-    print(chunk.choices[0].delta.content)
+    
+    if chunk.choices[0].delta.content == '.': 
+        theme += chunk.choices[0].delta.content
+        theme += "\n"
+        
+    else:
+        theme += chunk.choices[0].delta.content
+print(theme)
